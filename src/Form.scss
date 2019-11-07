@@ -1,0 +1,104 @@
+* {
+  font-size: 16px;
+}
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px;
+}
+
+$off-wht: rgba(white, 0.4);
+@mixin input(
+  $padding: 10px 20px,
+  $font-size: 16px,
+  $border-radius: 3px,
+  $bg-color: #ccc,
+  $font-color: #333
+) {
+  padding: $padding;
+  display: block;
+  border-radius: $border-radius;
+  background: $bg-color;
+  font-size: $font-size;
+  color: $font-color;
+  border: 0.094em solid;
+  border-radius: 0.625em;
+  &:hover {
+    box-shadow: 0 0.125em $off-wht, inset 0 0.063em $off-wht;
+  }
+}
+
+.input {
+  @include input;
+}
+
+/* Color Themes - Variables */
+
+$green: #75b343;
+$blue: #3ba9e4;
+
+/* Common Colors - Variables */
+
+/* Mixins */
+
+@mixin btn-theme($btn-color) {
+  border-color: darken($btn-color, 20%);
+  background-color: $btn-color;
+  &:hover {
+    background-color: darken($btn-color, 6%);
+    box-shadow: 0 0.125em $off-wht, inset 0 0.063em $off-wht,
+      inset 0 -0.188em lighten($btn-color, 2%);
+  }
+  &:active {
+    box-shadow: 0 0.063em $off-wht, inset 0 0 1.094em darken($btn-color, 40%),
+      inset 0 0.063em darken($btn-color, 20%),
+      inset 0 -0.188em darken($btn-color, 20%);
+  }
+}
+
+@mixin trans($val...) {
+  -webkit-transition: $val;
+  -moz-transition: $val;
+  -o-transition: $val;
+  transition: $val;
+}
+
+/* Button Global */
+
+.btn {
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.938em 1.875em;
+  border: 0.094em solid;
+  border-radius: 0.625em;
+  box-shadow: 0 0.375em 0.313em -0.313em rgba(black, 0.8),
+    inset 0 0.063em $off-wht, inset 0 -0.188em rgba(black, 0.15);
+  color: #fff;
+  font: bold 1.2rem sans-serif;
+  @include trans(0.2s ease-in-out);
+  text: {
+    transform: uppercase;
+    decoration: none;
+    shadow: 0 0.063em rgba(black, 0.3);
+  }
+  cursor: pointer;
+}
+
+/* Themes */
+
+.green {
+  @include btn-theme($green);
+}
+
+.blue {
+  @include btn-theme($blue);
+}
+
+.error {
+  color: red;
+}
+
+.border-error {
+  border: 5px solid red;
+}
