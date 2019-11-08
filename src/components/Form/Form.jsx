@@ -9,8 +9,13 @@ const Form = () => {
     unregister,
     errors,
     reset,
+    formState,
     ...rest
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: "thisistheeemai@gmail.com"
+    }
+  });
 
   console.log("rest", rest);
 
@@ -22,10 +27,12 @@ const Form = () => {
     };
   }, [unregister, errors]);
 
+  useEffect(() => {}, [formState]);
+
   const onSubmit = values => {
     console.log("values", values);
     console.log("errors", errors);
-    alert("data sent");
+    alert(`data sent${JSON.stringify(values)}`);
     reset();
   };
 
@@ -55,9 +62,11 @@ const Form = () => {
         })}
       />
       <div className="error">{errors.username && errors.username.message}</div>
+      {console.log("formState.isSubmitted", formState.isSubmitted)}
       <button type="submit" className="btn blue">
         Submit
       </button>
+      {formState.isSubmitted && "has been submitted "}
     </form>
   );
 };

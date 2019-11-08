@@ -1,15 +1,23 @@
 import React, { Component } from "react";
 import "./App.scss";
-import AgGrid from "./components/AgGrid/AgGrid";
-import Form from "./components/Form/Form";
+
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+
+const Form = React.lazy(() => import("./components/Form/Form"));
+const AgGrid = React.lazy(() => import("./components/AgGrid/AgGrid"));
+const Counter = React.lazy(() => import("./components/Counter/Counter"));
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Form />
-        <AgGrid />
-      </div>
+      <Provider store={store}>
+        <React.Suspense fallback="loading...">
+          <Counter />
+          <Form />
+          <AgGrid />
+        </React.Suspense>
+      </Provider>
     );
   }
 }
