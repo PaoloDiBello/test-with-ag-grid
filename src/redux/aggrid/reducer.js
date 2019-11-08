@@ -6,6 +6,7 @@ const columnDefs = [
     field: "make",
     sortable: true,
     filter: true,
+    editable: true,
     checkboxSelection: true
   },
   {

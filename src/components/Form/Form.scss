@@ -37,6 +37,8 @@ $off-wht: rgba(white, 0.4);
 
 $green: #75b343;
 $blue: #3ba9e4;
+$blue: #3ba9e4;
+$orange: #ff6a42;
 
 /* Common Colors - Variables */
 
@@ -93,6 +95,10 @@ $blue: #3ba9e4;
 
 .blue {
   @include btn-theme($blue);
+}
+
+.orange {
+  @include btn-theme($orange);
 }
 
 .error {
